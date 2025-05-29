@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Backend- Test') {
             steps {
-                dir('10-net9-remix-pg-env/Backend') {
+                dir('10-net9-remix-pg-env/Backend/ProgramTest.cs') {
                     echo 'Running tests...'
                     sh 'dotnet test --no-build --verbosity normal'
                 }

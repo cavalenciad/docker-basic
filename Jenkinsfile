@@ -5,12 +5,12 @@ pipeline {
         dotnetsdk 'dotnet-9'
         nodejs 'node-20'
     }
-
+/* 
     environment {
         DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/bin"
         PATH = "${env.PATH}:${tool 'node-20'}/bin"
     }
-
+*/
     stages {
         stage('Check versions') {
             steps {
@@ -53,6 +53,30 @@ pipeline {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Publishing the project...'
                     sh 'dotnet publish --configuration Release --no-build -o ./publish'
+                }
+            }
+        }
+        stage('Frontend - Install Dependencies') {
+            steps {
+                dir('10-net9-remix-pg-env/Frontend') {
+                    echo 'Installing dependencies...'
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Frontend - Test') {
+            steps {
+                dir('10-net9-remix-pg-env/Frontend') {
+                    echo 'Building the frontend...'
+                    sh 'npm test'
+                }
+            }
+        }
+        stage('Frontend - Build') {
+            steps {
+                dir('10-net9-remix-pg-env/Frontend') {
+                    echo 'Building the frontend...'
+                    sh 'npm run build'
                 }
             }
         }

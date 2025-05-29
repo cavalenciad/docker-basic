@@ -32,11 +32,29 @@ pipeline {
                 }
             }
         }
+        stage('Backend - Static Analysis'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Running static analysis...'
+                    sh 'dotnet sonarscanner begin /k:"Docker-Basic" /d:sonar.host.url="http://192.168.187.128:9000/" /d:sonar.login="sqa_d0b18951d82f6c2aef11737bde5be77a39e67233"'
+                    sh 'dotnet build'
+                    sh 'dotnet sonarscanner end /d:sonar.login="sqa_d0b18951d82f6c2aef11737bde5be77a39e67233"'
+                }
+            }
+        }
         stage('Backend- Test') {
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running tests...'
                     sh 'dotnet test --no-build --verbosity normal'
+                }
+            }
+        }
+        stage('Backend - Code Coverage'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Running code coverage...'
+                    sh 'dotnet test --collect:"XPlat Code Coverage" --no-build --verbosity normal'
                 }
             }
         }

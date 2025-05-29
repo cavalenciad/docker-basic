@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    tools {
+        dotnet 'dotnet-9'
+    }
+
     stages {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh '/usr/local/share/dotnet/dotnet --version'
+                sh 'dotnet --version'
                 // Add your build steps here
             }
         }

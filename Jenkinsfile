@@ -3,9 +3,20 @@ pipeline {
 
     tools {
         dotnetsdk 'dotnet-9'
+        nodejs 'node-20'
     }
 
     stages {
+        stage('Check versions') {
+            steps {
+                script {
+                    echo 'Node.js version:'
+                    sh 'node -v'
+                    echo 'NPM version:'
+                    sh 'npm -v'
+                }
+            }
+        }
         stage('Backend - Restore') {
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
@@ -16,7 +27,7 @@ pipeline {
         }
         stage('Backend- Test') {
             steps {
-                dir('10-net9-remix-pg-env/Backend/ProgramTest.cs') {
+                dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running tests...'
                     sh 'dotnet test --no-build --verbosity normal'
                 }

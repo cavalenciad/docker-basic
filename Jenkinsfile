@@ -8,22 +8,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                sh 'dotnet --version'
-                // Add your build steps here
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Hola mundo!...'
-                echo 'Running tests...'
-                // Add your test steps here
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the project...'
-                // Add your deployment steps here
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Restoring dependencies...'
+                    sh 'dotnet restore'
+                }
             }
         }
     }

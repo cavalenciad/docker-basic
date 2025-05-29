@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
+                sh '/usr/local/share/dotnet/dotnet/dotnet --version'
                 // Add your build steps here
             }
         }

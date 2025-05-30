@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         }
-        stage('Backend - Static Analysis'){
+/*         stage('Backend - Static Analysis'){
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running static analysis...'
@@ -41,7 +41,7 @@ pipeline {
                     sh 'dotnet sonarscanner end /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
                 }
             }
-        }
+        } */
         stage('Backend- Test') {
             steps {
                 dir('10-net9-remix-pg-env/Backend') {

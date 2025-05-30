@@ -32,21 +32,21 @@ pipeline {
                 }
             }
         }
-/*         stage('Backend - Static Analysis'){
+        stage('Backend - Static Analysis'){
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running static analysis...'
-                    sh 'dotnet sonarscanner begin /k:"Docker-Basic" /d:sonar.host.url="http://192.168.187.128:9000"  /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
+                    // sh 'dotnet sonarscanner begin /k:"Docker-Basic" /d:sonar.host.url="http://192.168.187.128:9000"  /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
                     sh 'dotnet build'
-                    sh 'dotnet sonarscanner end /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
+                    // sh 'dotnet sonarscanner end /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
                 }
             }
-        } */
+        }
         stage('Backend- Test') {
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running tests...'
-                    sh 'dotnet test --verbosity normal'
+                    sh 'dotnet test --no-build --verbosity normal'
                 }
             }
         }

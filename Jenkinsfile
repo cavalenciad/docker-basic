@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/bin"
-        PATH = "${env.PATH}:${tool 'node-20'}/bin"
+        PATH = "${env.PATH}:${tool 'node-20'}/bin:/root/.dotnet/tools"
     }
 
     stages {
@@ -36,9 +36,9 @@ pipeline {
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running static analysis...'
-                    sh 'dotnet sonarscanner begin ~/sonarqube_data/k:"Docker-Basic" ~/sonarqube_data/d:sonar.host.url="http://192.168.187.128:9000"  /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
+                    sh 'dotnet sonarscanner begin /k:"Docker-Basic" /d:sonar.host.url="http://192.168.187.128:9000"  /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
                     sh 'dotnet build'
-                    sh 'dotnet sonarscanner end ~/sonarqube_data/d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
+                    sh 'dotnet sonarscanner end /d:sonar.login="sqp_97d2c525dfe655a0465f4d7f10d8cc28410cbe8b"'
                 }
             }
         }

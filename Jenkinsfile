@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/bin"
+        DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/"
         PATH = "${env.PATH}:${tool 'node-20'}/bin"
     }
 

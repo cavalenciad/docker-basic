@@ -46,7 +46,7 @@ pipeline {
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
                     echo 'Running tests...'
-                    sh 'dotnet test --no-build --verbosity normal'
+                    sh 'dotnet test --verbosity normal'
                 }
             }
         }

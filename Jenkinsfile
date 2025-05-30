@@ -6,10 +6,10 @@ pipeline {
         nodejs 'node-20'
     }
 
-    environment {
+    /* environment {
         DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/"
         PATH = "${env.PATH}:${tool 'node-20'}/bin"
-    }
+    } */
 
     stages {
         stage('Check versions') {

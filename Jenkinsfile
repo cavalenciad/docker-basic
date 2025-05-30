@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/bin"
-        PATH = "${env.PATH}:${tool 'node-20'}/bin:/home/jenkins/.dotnet/tools"
+        PATH = "${env.PATH}:${tool 'node-20'}/bin"
     }
 
     stages {

@@ -4,7 +4,6 @@ pipeline {
     tools {
         dotnetsdk 'dotnet-9'
         nodejs 'node-20'
-        sonarscanner 'sonar-scanner-4.8'
     }
 /* 
     environment {
